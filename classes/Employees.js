@@ -1,11 +1,13 @@
 class Employees {
     #salary;
     #isHired = true;
+    static #allEmployees = [];
 
     constructor(name, title, salary){
         this.name = name;
         this.title = title;
         this.#salary = salary;
+        Employees.#allEmployees.push(this);
     }
 
     getSalary(){
@@ -26,6 +28,16 @@ class Employees {
         } else {
             this.#isHired = true;
         }
+    }
+    static getEmployees(){
+        return this.#allEmployees;
+    }
+    static getTotalPayroll(){
+        let count = 0;
+        this.#allEmployees.forEach(item=>{
+            count += item.#salary
+        })
+        return count;
     }
     
 }
